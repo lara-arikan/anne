@@ -1,14 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[54]:
-
-
 from midiutil.MidiFile import MIDIFile
-
-
-# In[55]:
-
 
 # Error functions
 
@@ -26,10 +16,6 @@ def validate_types(val, maxf, minf, data):
     elif type(data) is not list:
         return False
     return True
-
-
-# In[56]:
-
 
 # Additions to data
 
@@ -53,10 +39,6 @@ def add_dividers(pitches: list, interval: int) -> list:
             new_pitches.append('div')
 
     return new_pitches
-
-
-# In[63]:
-
 
 # Sonification: minmax feature mapping
 
