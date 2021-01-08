@@ -1,3 +1,14 @@
+# -----------------------------------------------------------------------------
+# Name:        floats.py
+# Purpose:     Sonification of lists of floats
+#
+# Author:      Lara Arikan (arikan -at- stanford.edu)
+#
+# Created:     1/7/2021
+# License:     MIT license
+# -----------------------------------------------------------------------------
+
+
 from midiutil.MidiFile import MIDIFile
 
 # Error functions
@@ -6,15 +17,6 @@ def validate_values(val, maxf, minf, maxval, minval):
     if maxf < minf or maxf > 127 or minf > 127 or maxf < 0 or minf < 0 or val > maxval or val < minval:
         return False
     
-    return True
-
-def validate_types(val, maxf, minf, data):
-    if type(val) is not float and type(val) is not int:
-        return False
-    elif type(maxf) is not int or type(minf) is not int:
-        return False
-    elif type(data) is not list:
-        return False
     return True
 
 # Additions to data
@@ -40,6 +42,7 @@ def add_dividers(pitches: list, interval: int) -> list:
 
     return new_pitches
 
+
 # Sonification: minmax feature mapping
 
 def pitch(val: float or int, maxf: int, minf: int, maxval: float, minval: float) -> int:
@@ -63,11 +66,8 @@ def pitch(val: float or int, maxf: int, minf: int, maxval: float, minval: float)
     """
     
     # check for errors
-    
-    if not validate_types_minmax(val, maxf, minf, data):
-        raise TypeError("Ensure parameter types match documentation.")
-        
-    if not validate_values_minmax(val, maxf, minf, maxval, minval):
+       
+    if not validate_values(val, maxf, minf, maxval, minval):
         raise ValueError("Define minimum and maximum MIDI pitches such that 0 =< minimum < maximum =< 127.")
     
     # use formula for min-max feature mapping
